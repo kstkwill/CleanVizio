@@ -4,6 +4,36 @@ A personal, locally hosted home screen for a Vizio SmartCast TV: app shortcuts, 
 
 The computer serves the interface over the home network. The TV renders it; no HDMI cable is required. This is a temporary app launch, not a firmware installation or permanent replacement for Vizio Home. Compatibility has only been tested on a VFD40M-0810.
 
+## Personal preferences and contributor guidance
+
+Preserve these preferences when updating this project:
+
+| Region | Followed teams and sports |
+| --- | --- |
+| Atlanta, Georgia, USA | Hawks (NBA), Falcons (NFL), Braves (MLB) |
+| Clemson, South Carolina, USA | Football, men's basketball, women's basketball, baseball, softball, men's soccer only |
+| Manchester, England | Manchester United |
+| Brighton and Hove, England | Brighton & Hove Albion |
+| Wimbledon, London, England | AFC Wimbledon |
+
+Use each team's correct sport, league, and competition feeds. English clubs should include their league and cup fixtures wherever ESPN supplies them. Do not add Clemson women's soccer, volleyball, or women's lacrosse. Team locations identify the teams and competitions; they do not determine the viewer's displayed time zone or weather.
+
+### Home location, weather, and time
+
+- Home display location: Clemson, South Carolina. Being away from home does not automatically change the TV's location or followed teams.
+- Weather: Open-Meteo for Clemson (34.6834, -82.8374), in Fahrenheit, including conditions, feels-like temperature, and daily high/low.
+- Display time zone: `America/New_York` for the clock, date, greetings, fixtures, and refresh timestamps, regardless of the TV or host computer's system time zone.
+- "EST" means local Eastern Time here: EST in winter and EDT during daylight saving time. Do not hard-code UTC-5 year-round.
+- Convert timestamped fixtures to Eastern Time, including the date when conversion crosses midnight. Do not treat UK kickoff times as Eastern times or use a fixed UK-to-US offset; daylight-saving transition dates differ.
+- Preserve TBD or postponed status instead of inventing a kickoff time.
+- If the installation moves permanently, update the weather coordinates, visible city label, weather query time zone, and all display time zones together. Keep favorites unless the owner requests changes. Automatic location detection is not implemented.
+
+### Sports priorities
+
+Upcoming fixtures (opponent, date, kickoff time) are the priority. Live scores are optional; the owner watches the matches. Prefer ESPN for the followed sports, and verify feed coverage before adding another provider. Do not introduce a paid API dependency without an explicit request.
+
+The current implementation still supports Live, Upcoming, and Recent views and retains its existing refresh intervals. Slower fixture-only polling is a future change, not implemented by these preference notes.
+
 ## Windows setup
 
 1. Install Node.js and connect the computer and TV to the same trusted network.
