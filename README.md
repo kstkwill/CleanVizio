@@ -1,38 +1,45 @@
 # CleanVizio
 
-A personal, locally hosted home screen for a Vizio SmartCast TV: app shortcuts, remote navigation, a rotating sports ticker, Clemson weather, and a time-based greeting.
+A customizable, locally hosted home screen for a Vizio SmartCast TV: app shortcuts, remote navigation, a rotating sports ticker, local weather, and a time-based greeting.
 
 The computer serves the interface over the home network. The TV renders it; no HDMI cable is required. This is a temporary app launch, not a firmware installation or permanent replacement for Vizio Home. Compatibility has only been tested on a VFD40M-0810.
 
-## Personal preferences and contributor guidance
+## Make it yours
 
-Preserve these preferences when updating this project:
+Before using CleanVizio, choose the sports and teams you want to follow, your weather location, and your display time zone. The included configuration is a starting example, not a required set of favorites.
 
-| Region | Followed teams and sports |
-| --- | --- |
-| Atlanta, Georgia, USA | Hawks (NBA), Falcons (NFL), Braves (MLB) |
-| Clemson, South Carolina, USA | Football, men's basketball, women's basketball, baseball, softball, men's soccer only |
-| Manchester, England | Manchester United |
-| Brighton and Hove, England | Brighton & Hove Albion |
-| Wimbledon, London, England | AFC Wimbledon |
+These settings currently require editing the source files; there is no setup wizard or automatic location detection.
 
-Use each team's correct sport, league, and competition feeds. English clubs should include their league and cup fixtures wherever ESPN supplies them. Do not add Clemson women's soccer, volleyball, or women's lacrosse. Team locations identify the teams and competitions; they do not determine the viewer's displayed time zone or weather.
+### Choose your sports and teams
 
-### Home location, weather, and time
+1. In `live-data.js`, edit the `feeds` array. Each entry contains a display name, sport label, and ESPN team endpoint path. Keep only the teams and sports you want, using the correct ESPN identifiers for each.
+2. In `live-ui.js`, update `favoriteNames` so the team filter matches the display names in your feeds. Keep `All teams` as the first option.
+3. Update the coverage description in `live-ui.js` to describe your selections. If replacing team-specific feed validation in `live-data.js`, update that validation to match the new team.
+4. Restart the host and check that your selected teams return the expected fixtures. League and cup coverage depends on ESPN's available data.
 
-- Home display location: Clemson, South Carolina. Being away from home does not automatically change the TV's location or followed teams.
-- Weather: Open-Meteo for Clemson (34.6834, -82.8374), in Fahrenheit, including conditions, feels-like temperature, and daily high/low.
-- Display time zone: `America/New_York` for the clock, date, greetings, fixtures, and refresh timestamps, regardless of the TV or host computer's system time zone.
-- "EST" means local Eastern Time here: EST in winter and EDT during daylight saving time. Do not hard-code UTC-5 year-round.
-- Convert timestamped fixtures to Eastern Time, including the date when conversion crosses midnight. Do not treat UK kickoff times as Eastern times or use a fixed UK-to-US offset; daylight-saving transition dates differ.
-- Preserve TBD or postponed status instead of inventing a kickoff time.
-- If the installation moves permanently, update the weather coordinates, visible city label, weather query time zone, and all display time zones together. Keep favorites unless the owner requests changes. Automatic location detection is not implemented.
+The sports panel includes Upcoming, Live, and Recent views. Use Upcoming for opponents, dates, and kickoff times.
 
-### Sports priorities
+### Set your weather location
 
-Upcoming fixtures (opponent, date, kickoff time) are the priority. Live scores are optional; the owner watches the matches. Prefer ESPN for the followed sports, and verify feed coverage before adding another provider. Do not introduce a paid API dependency without an explicit request.
+- In the `weather()` function in `live-data.js`, replace the Open-Meteo request's `latitude` and `longitude` with your location's coordinates.
+- In `glass-page.js`, change the visible weather city label to match.
+- The current display uses Fahrenheit. If changing the request's temperature unit, also update the unit labels in `live-ui.js`.
+- Set the weather request's `timezone` to your chosen local time zone so daily forecasts use the correct local date.
 
-The current implementation still supports Live, Upcoming, and Recent views and retains its existing refresh intervals. Slower fixture-only polling is a future change, not implemented by these preference notes.
+Weather includes current conditions, temperature, feels-like temperature, and daily high/low. It uses the configured location, not the location of the teams you follow.
+
+### Set your time zone
+
+Replace the default `America/New_York` time zone with your own IANA time-zone name, such as `America/Chicago` or `Europe/London`, in:
+
+- `glass-ui.js`: clock, date, and greeting.
+- `live-ui.js`: fixture times and refresh timestamps; update the displayed `ET` and `EST/EDT` labels as well.
+- `clean-vizio.js`: the built-in page's clock and date.
+- `live-data.js`: the weather request's time zone (URL-encoded when used in the URL).
+
+Use a named time zone so daylight-saving changes are handled automatically. For example, `America/New_York` uses EST in winter and EDT in summer. Fixture timestamps should be converted to the viewer's time zone, including any date change, rather than shifted by a fixed number of hours.
+
+Restart CleanVizio and reload the TV page after changing these settings.
 
 ## Windows setup
 
@@ -59,7 +66,7 @@ The watcher starts paused. `Resume-CleanVizioWatcher` enables it; `Pause-CleanVi
 
 ## Data and customization
 
-Sports use ESPN endpoints; some feeds can be unavailable and coverage is not guaranteed. Weather uses Open-Meteo. Premier League, Sky, and FotMob integrations are not implemented. Edit `live-data.js` for teams/location, `glass-ui.js` for the personal greeting and app ordering, and `glass.css` for appearance.
+Sports use ESPN endpoints; some feeds can be unavailable and coverage is not guaranteed. Weather uses Open-Meteo. Dedicated Premier League, Sky, and FotMob integrations are not implemented; football coverage comes from ESPN. Follow the setup instructions above to choose teams, weather location, and time zone. Edit `glass-ui.js` for the greeting and app ordering, and `glass.css` for appearance.
 
 ## Security and limitations
 
