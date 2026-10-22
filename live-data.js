@@ -13,6 +13,7 @@ function json(url,ttl){
 }
 const feeds=[
  ['Hawks','NBA','basketball/nba/teams/atl'],
+ ['Atlanta United','Soccer','soccer/all/teams/18418'],
  ['Falcons','NFL','football/nfl/teams/atl'],['Braves','MLB','baseball/mlb/teams/atl'],
  ['Manchester United','Soccer','soccer/all/teams/360'],['Brighton & Hove Albion','Soccer','soccer/all/teams/331'],['AFC Wimbledon','Soccer','soccer/all/teams/3802'],
  ['Clemson','Football','football/college-football/teams/228'],['Clemson','Men’s basketball','basketball/mens-college-basketball/teams/228'],['Clemson','Women’s basketball','basketball/womens-college-basketball/teams/228'],
