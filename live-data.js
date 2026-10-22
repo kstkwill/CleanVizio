@@ -16,7 +16,7 @@ const feeds=[
  ['Falcons','NFL','football/nfl/teams/atl'],['Braves','MLB','baseball/mlb/teams/atl'],
  ['Manchester United','Soccer','soccer/all/teams/360'],['Brighton & Hove Albion','Soccer','soccer/all/teams/331'],['AFC Wimbledon','Soccer','soccer/all/teams/3802'],
  ['Clemson','Football','football/college-football/teams/228'],['Clemson','Men’s basketball','basketball/mens-college-basketball/teams/228'],['Clemson','Women’s basketball','basketball/womens-college-basketball/teams/228'],
- ['Clemson','Baseball','baseball/college-baseball/teams/228'],['Clemson','Softball','softball/college-softball/teams/228'],['Clemson','Men’s soccer','soccer/usa.ncaa.1/teams/228'],['Clemson','Women’s soccer','soccer/usa.ncaa.w.1/teams/228'],['Clemson','Volleyball','volleyball/womens-college-volleyball/teams/228'],['Clemson','Women’s lacrosse','lacrosse/womens-college-lacrosse/teams/228']
+ ['Clemson','Baseball','baseball/college-baseball/teams/228'],['Clemson','Softball','softball/college-softball/teams/228'],['Clemson','Men’s soccer','soccer/usa.ncaa.1/teams/228']
 ];
 let sportsCache=null;
 function sports(){
