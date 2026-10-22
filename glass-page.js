@@ -1,0 +1,13 @@
+'use strict';
+const fs=require('fs'),path=require('path');
+module.exports=function({key,apps,controller}){
+const read=n=>fs.readFileSync(path.join(__dirname,n),'utf8');
+const initial=JSON.stringify({key,controller,apps:apps.map(a=>({id:a.id,name:a.name}))}).replace(/</g,'\\u003c');
+return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CleanVizio</title><style>${read('glass.css')}</style></head><body><main>
+<header class="top"><div><h1 id="greeting">Welcome, Mr. Adkins.</h1><div id="date"></div></div><div class="top-right"><div class="weather"><div class="weather-label">Clemson, SC</div><div id="weather-value">Loading weather</div><div id="weather-detail"></div></div><div id="clock" class="time"></div></div></header>
+<section aria-label="Apps"><div class="section-head"><h2>Apps</h2><button class="small-home" id="home-shortcut">Vizio Home <span>↗</span></button></div><div class="tiles" id="tiles"></div></section>
+<section class="sports" aria-label="Your sports"><div class="sports-head"><h2>Your teams</h2><div class="sports-actions"><button id="sports-team">All teams ▾</button><div class="segments"><button data-sports-tab="Live" aria-pressed="true">Live</button><button data-sports-tab="Upcoming" aria-pressed="false">Upcoming</button><button data-sports-tab="Recent" aria-pressed="false">Recent</button></div></div></div><div id="games" class="games" aria-live="polite"><p class="empty">Loading scores</p></div><div class="sports-bottom"><span id="feed-status">ESPN</span><div class="sports-actions"><button id="previous-games" aria-label="Previous games" disabled>‹</button><span id="sports-page">1 / 1</span><button id="next-games" aria-label="Next games" disabled>›</button><button id="refresh-sports">Refresh</button></div></div><button id="coverage-toggle" aria-expanded="false">About these scores</button><p id="coverage-text" hidden></p></section>
+<footer><span>↑ ↓ ← → Navigate &nbsp; · &nbsp; OK Select</span><span>Weather · Open-Meteo</span></footer><div id="status" role="status"></div>
+<section id="panel" class="panel" hidden><h2>TV controls</h2><div class="tools"><button id="show">Show custom screen</button><button id="home">Open Vizio Home</button></div><h2>Add an app</h2><div class="tools"><input id="name" maxlength="40" aria-label="App name" placeholder="App name"><button id="capture">Add current app</button></div><div id="manage"></div></section>
+</main><script>var state=${initial};</script><script>${read('glass-ui.js')}</script><script>${read('live-ui.js')}</script>${controller?'<script>'+read('watcher-ui.js')+'</script>':''}</body></html>`;
+};

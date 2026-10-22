@@ -1,0 +1,13 @@
+shortcuts.json
+shortcuts.json.tmp
+.env
+.env.*
+*.log
+*.zip
+node_modules/
+*.before-*.js
+Start-CleanVizio.ps1
+README.txt
+REDESIGN.txt
+*token*
+*credential*

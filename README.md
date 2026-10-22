@@ -46,4 +46,3 @@ Automatic background startup and protected persistent token storage are planned 
 - Some brand vectors originate from Simple Icons and Wikimedia Commons. Brand names and logos belong to their respective owners; this project is unaffiliated with them. No blanket license grant for third-party artwork is implied.
 
 No project license has been selected yet.
-
