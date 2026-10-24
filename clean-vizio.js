@@ -58,6 +58,7 @@ function validConfig(c) {
 }
 const watcher = createWatcher({request:tvRequest, log, launch:() => tvRequest('PUT','/app/launch',{VALUE:{NAME_SPACE:4,APP_ID:'3001',MESSAGE:'http://'+BIND+':'+PORT+'/'}})});
 async function action(input) {
+  if(input.action==='remote') return require('./remote').sendRemote(input.command, tvRequest, watcher);
   if(input.action==='watcher-resume') return watcher.resume();
   if(input.action==='watcher-pause') return watcher.pause();
   if(input.action==='home') watcher.pause();
