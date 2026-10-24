@@ -83,3 +83,7 @@ main{max-width:1760px;padding:3.5vh 5vw 2vh}
 
 /* Remote hints are unnecessary on the everyday TV screen. */
 footer>span:first-child{display:none}footer{justify-content:flex-end}
+
+/* Computer-only remote control panel. */
+.remote-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;margin:20px 0}.remote h3{font-size:16px;margin:0 0 12px}.remote .tools button{min-height:48px;min-width:96px}.remote button:disabled{opacity:.5;cursor:wait}.remote-note{font-size:13px;line-height:1.5;color:#b8c1d4}#remote-status{min-height:24px;font-size:15px}.panel{scroll-margin-top:24px}
+.remote .remote-dpad{display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(3,58px) 44px;gap:8px;justify-content:center}.remote .remote-dpad button{min-width:0;min-height:44px;padding:8px;font-size:20px;touch-action:manipulation}.remote-dpad [data-command="nav-up"]{grid-area:1/2}.remote-dpad [data-command="nav-left"]{grid-area:2/1}.remote-dpad [data-command="nav-ok"]{grid-area:2/2;background:#b5e2ff;color:#101b30;border-radius:50%;font-weight:700}.remote-dpad [data-command="nav-right"]{grid-area:2/3}.remote-dpad [data-command="nav-down"]{grid-area:3/2}.remote-dpad [data-command="nav-back"]{grid-area:4/1/5/4;font-size:16px}
