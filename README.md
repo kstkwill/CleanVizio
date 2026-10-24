@@ -83,3 +83,11 @@ Automatic background startup and protected persistent token storage are planned 
 - Some brand vectors originate from Simple Icons and Wikimedia Commons. Brand names and logos belong to their respective owners; this project is unaffiliated with them. No blanket license grant for third-party artwork is implied.
 
 No project license has been selected yet.
+
+### Website remote
+
+Open `/control` on the computer running CleanVizio. The TV controls include volume up/down, mute/unmute, power on/off, next input, and tuner channel controls, alongside app shortcuts and Vizio Home. Restart CleanVizio after updating its files, then refresh the page. The TV screen itself does not show this panel.
+
+Commands use the paired SmartCast API and report acceptance or errors; acceptance does not prove the TV visibly changed. Power on works only while the TV API is reachable in standby. Channel buttons may be ignored by streaming apps. The existing computer/TV address restrictions remain in place; phone access is not enabled by this feature.
+
+The website remote also includes a directional pad (up/down/left/right), OK, and Back. Click the buttons to navigate on the TV; behavior inside individual apps depends on the app. Navigation temporarily holds the automatic Home watcher so it does not interrupt manual use.
